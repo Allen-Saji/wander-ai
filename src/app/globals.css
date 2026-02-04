@@ -1,0 +1,305 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-container: var(--container);
+  --color-backdrop: var(--backdrop);
+  --color-muted-backdrop: var(--muted-backdrop);
+
+  /* WanderAI Custom Colors */
+  --color-wander-charcoal: var(--wander-charcoal);
+  --color-wander-cream: var(--wander-cream);
+  --color-wander-copper: var(--wander-copper);
+  --color-wander-copper-light: var(--wander-copper-light);
+  --color-wander-slate: var(--wander-slate);
+  --color-wander-warm: var(--wander-warm);
+}
+
+:root {
+  /* Base Tambo Variables */
+  --background: oklch(0.98 0.005 80);
+  --foreground: oklch(0.2 0.02 260);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.2 0.02 260);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.2 0.02 260);
+  --primary: oklch(0.55 0.12 55);
+  --primary-foreground: oklch(0.98 0.005 80);
+  --secondary: oklch(0.92 0.01 80);
+  --secondary-foreground: oklch(0.3 0.02 260);
+  --muted: oklch(0.94 0.01 80);
+  --muted-foreground: oklch(0.5 0.02 260);
+  --accent: oklch(0.55 0.12 55);
+  --accent-foreground: oklch(0.98 0 0);
+  --destructive: oklch(0.55 0.2 25);
+  --border: oklch(0.88 0.01 80);
+  --input: oklch(0.92 0.01 80);
+  --ring: oklch(0.55 0.12 55);
+  --chart-1: oklch(0.55 0.12 55);
+  --chart-2: oklch(0.65 0.15 160);
+  --chart-3: oklch(0.6 0.12 250);
+  --chart-4: oklch(0.7 0.1 90);
+  --chart-5: oklch(0.5 0.15 320);
+
+  /* Tambo Specific */
+  --container: oklch(0.96 0.008 80);
+  --backdrop: oklch(0.3 0.05 260 / 0.15);
+  --muted-backdrop: oklch(0.3 0.05 260 / 0.08);
+  --radius: 0.625rem;
+
+  /* WanderAI Brand Colors */
+  --wander-charcoal: oklch(0.22 0.015 260);
+  --wander-cream: oklch(0.97 0.01 85);
+  --wander-copper: oklch(0.58 0.14 55);
+  --wander-copper-light: oklch(0.72 0.1 55);
+  --wander-slate: oklch(0.35 0.02 260);
+  --wander-warm: oklch(0.94 0.02 75);
+
+  /* Fonts */
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+}
+
+.dark {
+  --background: oklch(0.15 0.015 260);
+  --foreground: oklch(0.95 0.005 80);
+  --card: oklch(0.2 0.015 260);
+  --card-foreground: oklch(0.95 0.005 80);
+  --popover: oklch(0.2 0.015 260);
+  --popover-foreground: oklch(0.95 0.005 80);
+  --primary: oklch(0.65 0.12 55);
+  --primary-foreground: oklch(0.15 0.015 260);
+  --secondary: oklch(0.25 0.015 260);
+  --secondary-foreground: oklch(0.95 0.005 80);
+  --muted: oklch(0.25 0.015 260);
+  --muted-foreground: oklch(0.65 0.01 260);
+  --accent: oklch(0.65 0.12 55);
+  --accent-foreground: oklch(0.15 0.015 260);
+  --destructive: oklch(0.65 0.2 25);
+  --border: oklch(0.3 0.015 260);
+  --input: oklch(0.25 0.015 260);
+  --ring: oklch(0.65 0.12 55);
+  --container: oklch(0.18 0.015 260);
+  --backdrop: oklch(0.1 0.02 260 / 0.5);
+  --muted-backdrop: oklch(0.1 0.02 260 / 0.3);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
+
+/* Custom Scrollbar for Chat */
+.chat-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.chat-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.chat-scrollbar::-webkit-scrollbar-thumb {
+  background: oklch(0.4 0.02 260 / 0.3);
+  border-radius: 3px;
+}
+.chat-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.4 0.02 260 / 0.5);
+}
+
+/* Hide scrollbar utility */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Trip Panel Scrollbar */
+.trip-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+.trip-scrollbar::-webkit-scrollbar-track {
+  background: oklch(0.94 0.01 80);
+}
+.trip-scrollbar::-webkit-scrollbar-thumb {
+  background: oklch(0.55 0.12 55 / 0.3);
+  border-radius: 4px;
+}
+.trip-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.55 0.12 55 / 0.5);
+}
+
+/* Animations */
+@keyframes flash {
+  0%, 100% { background-color: transparent; }
+  50% { background-color: oklch(0.55 0.12 55 / 0.2); }
+}
+.animate-flash {
+  animation: flash 1s ease-in-out;
+}
+
+@keyframes thinking-gradient {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.animate-thinking-gradient {
+  background: linear-gradient(90deg, oklch(0.5 0.02 260) 0%, oklch(0.7 0.05 55) 50%, oklch(0.5 0.02 260) 100%);
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: thinking-gradient 2s linear infinite;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.animate-slide-in-right {
+  animation: slideInRight 0.4s ease-out forwards;
+}
+
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+.animate-pulse-subtle {
+  animation: pulse-subtle 2s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-4px); }
+}
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Staggered animations for children */
+.stagger-children > *:nth-child(1) { animation-delay: 0ms; }
+.stagger-children > *:nth-child(2) { animation-delay: 100ms; }
+.stagger-children > *:nth-child(3) { animation-delay: 200ms; }
+.stagger-children > *:nth-child(4) { animation-delay: 300ms; }
+.stagger-children > *:nth-child(5) { animation-delay: 400ms; }
+
+/* Grain texture overlay */
+.grain-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+/* Focus styles */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-wander-copper focus:ring-offset-2 focus:ring-offset-wander-charcoal;
+}
+
+/* Chat Panel Dark Theme Overrides */
+.chat-dark-theme {
+  /* Override CSS variables for dark background */
+  --background: oklch(0.28 0.015 260);
+  --foreground: oklch(0.92 0.01 85);
+  --muted: oklch(0.32 0.015 260);
+  --muted-foreground: oklch(0.7 0.02 260);
+  --border: oklch(0.38 0.02 260);
+  --input: oklch(0.32 0.015 260);
+}
+
+.chat-dark-theme [data-slot="message-content"] {
+  color: oklch(0.92 0.01 85);
+}
+
+.chat-dark-theme [data-slot="toolcall-info"] {
+  color: oklch(0.65 0.02 260);
+}
+
+.chat-dark-theme [data-slot="toolcall-info"] button {
+  color: oklch(0.7 0.02 260);
+}
+
+.chat-dark-theme [data-slot="toolcall-info"] button:hover {
+  background-color: oklch(0.35 0.02 260 / 0.5);
+}
+
+.chat-dark-theme [data-slot="message-loading-indicator"] span {
+  background-color: oklch(0.58 0.14 55);
+}
+
+.chat-dark-theme [data-slot="reasoning-info"] {
+  color: oklch(0.65 0.02 260);
+}
+
+.chat-dark-theme [data-slot="reasoning-info"] button {
+  color: oklch(0.7 0.02 260);
+}
+
+.chat-dark-theme [data-slot="reasoning-info"] .bg-muted\/50 {
+  background-color: oklch(0.3 0.02 260 / 0.5);
+}
+
+/* User message bubbles in chat */
+.chat-dark-theme [data-message-role="user"] [data-slot="message-content"] {
+  background-color: oklch(0.92 0.01 85);
+  color: oklch(0.22 0.015 260);
+}
+
+/* Assistant message text */
+.chat-dark-theme [data-message-role="assistant"] [data-slot="message-content"] {
+  color: oklch(0.92 0.01 85);
+}
