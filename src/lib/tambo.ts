@@ -7,6 +7,7 @@
  * - BudgetBreakdown (generative) - Donut chart for budget categories
  * - PlaceCard (generative) - Individual place/restaurant cards
  * - DayItinerary (interactable) - Daily timeline, updates in place
+ * - BudgetTracker (interactable) - Expense tracking, updates in place
  *
  * Tools:
  * - getWeather - 7-day forecast via Open-Meteo
@@ -19,6 +20,8 @@ import {
   tripOverviewSchema,
   BudgetBreakdown,
   budgetBreakdownSchema,
+  BudgetTracker,
+  budgetTrackerSchema,
   PlaceCard,
   placeCardSchema,
   DayItinerary,
@@ -95,6 +98,13 @@ export const components: TamboComponent[] = [
       "Renders a single day's itinerary as a timeline with activities. Use one DayItinerary per day when planning multi-day trips. For a 3-day trip, render 3 separate DayItinerary components with IDs 'day-1', 'day-2', 'day-3'. Each activity should have a time, name, description, type (food/culture/nature/shopping/nightlife/transport/rest), cost, and duration. When the user asks to modify a specific day (e.g., 'add a restaurant to day 2'), update that existing DayItinerary rather than creating a new one.",
     component: DayItinerary,
     propsSchema: dayItinerarySchema,
+  },
+  {
+    name: "BudgetTracker",
+    description:
+      "Tracks trip expenses against a budget with a list of expense items. Use this when the user wants to track spending, add expenses, or monitor their budget throughout the trip. Render ONE BudgetTracker per trip with ID 'budget-tracker'. When the user asks to add an expense (e.g., 'add $50 for dinner', 'I spent $200 on the hotel'), update the existing BudgetTracker's expenses array rather than creating a new one. Categories: accommodation, food, transport, activities, shopping, other. Mark expenses as isPaid: true when confirmed paid.",
+    component: BudgetTracker,
+    propsSchema: budgetTrackerSchema,
   },
   {
     name: "WeatherForecast",
