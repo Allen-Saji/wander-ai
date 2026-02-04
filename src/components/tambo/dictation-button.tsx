@@ -63,9 +63,9 @@ export default function DictationButton() {
             type="button"
             onClick={handleStartRecording}
             aria-label="Start dictation"
-            className="p-2 rounded-md cursor-pointer hover:bg-muted"
+            className="p-2 rounded-md cursor-pointer hover:bg-wander-slate/30"
           >
-            <Mic className="h-5 w-5" />
+            <Mic className="h-5 w-5 text-wander-cream/70 hover:text-wander-cream" />
           </button>
         </Tooltip>
       )}

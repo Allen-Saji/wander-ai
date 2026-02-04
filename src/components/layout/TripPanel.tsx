@@ -120,11 +120,6 @@ export function TripPanel() {
               Your Itinerary
             </p>
           </div>
-          {/* Status indicator */}
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-wander-copper/10 border border-wander-copper/20">
-            <div className="w-1.5 h-1.5 rounded-full bg-wander-copper animate-pulse-subtle" />
-            <span className="text-xs font-medium text-wander-copper">Live</span>
-          </div>
         </div>
       </div>
 

@@ -206,7 +206,7 @@ export function ChatPanel() {
         >
           <MessageInputTextarea
             placeholder="Describe your dream trip..."
-            className="text-wander-cream placeholder:text-wander-slate/60 bg-transparent border-none resize-none min-h-[44px] py-3 px-4"
+            className="text-wander-cream placeholder:text-wander-slate/60 bg-transparent border-none resize-none min-h-[36px] py-2 px-4 text-left [&_.tiptap]:text-left"
           />
           <MessageInputToolbar className="px-2 pb-2">
             {!isIdle ? (
