@@ -4,9 +4,11 @@ import { ChatPanel } from "@/components/layout/ChatPanel";
 import { TripPanel } from "@/components/layout/TripPanel";
 import { TripContextSync } from "@/lib/trip-context";
 import { components, tools } from "@/lib/tambo";
-import { TamboProvider, type McpServerInfo } from "@tambo-ai/react";
+import { useAuth } from "@/lib/auth-context";
+import { usePersistedThreads } from "@/lib/use-persisted-threads";
+import { TamboProvider, useTambo, type McpServerInfo } from "@tambo-ai/react";
+import { Loader2 } from "lucide-react";
 
-// MCP Server configuration
 const mcpServers: McpServerInfo[] = [
   {
     name: "WanderAI Attractions",
@@ -16,7 +18,63 @@ const mcpServers: McpServerInfo[] = [
   },
 ];
 
+function AppLayout({
+  persistThread,
+  userThreads,
+}: {
+  persistThread: (id: string, title?: string) => Promise<void>;
+  userThreads: ReturnType<typeof usePersistedThreads>["userThreads"];
+}) {
+  const { thread } = useTambo();
+  const hasMessages = thread?.messages && thread.messages.length > 0;
+
+  return (
+    <>
+      <TripContextSync />
+      <main className="h-screen flex overflow-hidden">
+        {/* Chat panel — full width when empty, 40% when has messages */}
+        <div
+          className={`h-full flex-shrink-0 border-r border-wander-slate/10 transition-all duration-500 ease-in-out ${
+            hasMessages
+              ? "w-[40%] min-w-[380px] max-w-[520px]"
+              : "w-full"
+          }`}
+        >
+          <ChatPanel
+            persistThread={persistThread}
+            userThreads={userThreads}
+            isExpanded={!hasMessages}
+          />
+        </div>
+
+        {/* Trip panel — slides in when messages exist */}
+        <div
+          className={`h-full transition-all duration-500 ease-in-out overflow-hidden ${
+            hasMessages ? "flex-1 opacity-100" : "w-0 opacity-0"
+          }`}
+        >
+          <TripPanel />
+        </div>
+      </main>
+    </>
+  );
+}
+
 export default function Home() {
+  const { user, loading: authLoading } = useAuth();
+  const { persistThread, userThreads, loading: threadsLoading } =
+    usePersistedThreads();
+
+  if (authLoading || threadsLoading) {
+    return (
+      <div className="h-screen flex items-center justify-center bg-wander-charcoal">
+        <Loader2 className="w-6 h-6 text-wander-copper animate-spin" />
+      </div>
+    );
+  }
+
+  if (!user) return null;
+
   return (
     <TamboProvider
       apiKey={process.env.NEXT_PUBLIC_TAMBO_API_KEY!}
@@ -24,20 +82,7 @@ export default function Home() {
       tools={tools}
       mcpServers={mcpServers}
     >
-      {/* Sync trip state to AI context */}
-      <TripContextSync />
-
-      <main className="h-screen flex overflow-hidden">
-        {/* Chat Panel - 40% */}
-        <div className="w-[40%] min-w-[380px] max-w-[520px] h-full flex-shrink-0 border-r border-wander-slate/10">
-          <ChatPanel />
-        </div>
-
-        {/* Trip Plan Panel - 60% */}
-        <div className="flex-1 h-full">
-          <TripPanel />
-        </div>
-      </main>
+      <AppLayout persistThread={persistThread} userThreads={userThreads} />
     </TamboProvider>
   );
 }

@@ -183,6 +183,14 @@
   animation: thinking-gradient 2s linear infinite;
 }
 
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-fade-in {
+  animation: fadeIn 0.2s ease-out forwards;
+}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -245,6 +253,24 @@
   mix-blend-mode: overlay;
 }
 
+/* Welcome ambient glow animations */
+@keyframes glowDrift {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.8; }
+  33% { transform: translate(3%, 5%) scale(1.05); opacity: 1; }
+  66% { transform: translate(-2%, -3%) scale(0.97); opacity: 0.7; }
+}
+@keyframes glowDriftReverse {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.7; }
+  33% { transform: translate(-4%, -3%) scale(1.03); opacity: 0.9; }
+  66% { transform: translate(3%, 4%) scale(0.95); opacity: 0.6; }
+}
+.welcome-glow-drift {
+  animation: glowDrift 12s ease-in-out infinite;
+}
+.welcome-glow-drift-reverse {
+  animation: glowDriftReverse 15s ease-in-out infinite;
+}
+
 /* Focus styles */
 .focus-ring {
   @apply focus:outline-none focus:ring-2 focus:ring-wander-copper focus:ring-offset-2 focus:ring-offset-wander-charcoal;
@@ -253,12 +279,12 @@
 /* Chat Panel Dark Theme Overrides */
 .chat-dark-theme {
   /* Override CSS variables for dark background */
-  --background: oklch(0.28 0.015 260);
+  --background: oklch(0.24 0.015 260);
   --foreground: oklch(0.92 0.01 85);
-  --muted: oklch(0.32 0.015 260);
-  --muted-foreground: oklch(0.7 0.02 260);
-  --border: oklch(0.38 0.02 260);
-  --input: oklch(0.32 0.015 260);
+  --muted: oklch(0.30 0.015 260);
+  --muted-foreground: oklch(0.65 0.02 260);
+  --border: oklch(0.32 0.02 260);
+  --input: oklch(0.30 0.015 260);
 }
 
 .chat-dark-theme [data-slot="message-content"] {
@@ -266,15 +292,16 @@
 }
 
 .chat-dark-theme [data-slot="toolcall-info"] {
-  color: oklch(0.65 0.02 260);
+  color: oklch(0.55 0.02 260);
+  font-size: 0.75rem;
 }
 
 .chat-dark-theme [data-slot="toolcall-info"] button {
-  color: oklch(0.7 0.02 260);
+  color: oklch(0.6 0.02 260);
 }
 
 .chat-dark-theme [data-slot="toolcall-info"] button:hover {
-  background-color: oklch(0.35 0.02 260 / 0.5);
+  background-color: oklch(0.32 0.02 260 / 0.5);
 }
 
 .chat-dark-theme [data-slot="message-loading-indicator"] span {
@@ -282,24 +309,31 @@
 }
 
 .chat-dark-theme [data-slot="reasoning-info"] {
-  color: oklch(0.65 0.02 260);
+  color: oklch(0.55 0.02 260);
 }
 
 .chat-dark-theme [data-slot="reasoning-info"] button {
-  color: oklch(0.7 0.02 260);
+  color: oklch(0.6 0.02 260);
 }
 
 .chat-dark-theme [data-slot="reasoning-info"] .bg-muted\/50 {
-  background-color: oklch(0.3 0.02 260 / 0.5);
+  background-color: oklch(0.28 0.02 260 / 0.5);
 }
 
 /* User message bubbles in chat */
 .chat-dark-theme [data-message-role="user"] [data-slot="message-content"] {
-  background-color: oklch(0.92 0.01 85);
-  color: oklch(0.22 0.015 260);
+  background: linear-gradient(135deg, oklch(0.58 0.14 55), oklch(0.52 0.12 55));
+  color: oklch(0.98 0.005 80);
+  border-radius: 1rem 1rem 0.25rem 1rem;
+  box-shadow: 0 2px 8px oklch(0.58 0.14 55 / 0.15);
 }
 
 /* Assistant message text */
 .chat-dark-theme [data-message-role="assistant"] [data-slot="message-content"] {
-  color: oklch(0.92 0.01 85);
+  color: oklch(0.88 0.01 85);
+}
+
+/* Thread content items spacing */
+.chat-dark-theme [data-slot="thread-content-messages"] {
+  gap: 0.75rem;
 }
