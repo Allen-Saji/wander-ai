@@ -6,17 +6,8 @@ import { TripContextSync } from "@/lib/trip-context";
 import { components, tools } from "@/lib/tambo";
 import { useAuth } from "@/lib/auth-context";
 import { usePersistedThreads } from "@/lib/use-persisted-threads";
-import { TamboProvider, useTambo, type McpServerInfo } from "@tambo-ai/react";
+import { TamboProvider, useTambo } from "@tambo-ai/react";
 import { Loader2 } from "lucide-react";
-
-const mcpServers: McpServerInfo[] = [
-  {
-    name: "WanderAI Attractions",
-    url: "http://localhost:3001/message",
-    serverKey: "attractions",
-    description: "Search for tourist attractions and points of interest",
-  },
-];
 
 function AppLayout({
   persistThread,
@@ -80,7 +71,6 @@ export default function Home() {
       apiKey={process.env.NEXT_PUBLIC_TAMBO_API_KEY!}
       components={components}
       tools={tools}
-      mcpServers={mcpServers}
     >
       <AppLayout persistThread={persistThread} userThreads={userThreads} />
     </TamboProvider>

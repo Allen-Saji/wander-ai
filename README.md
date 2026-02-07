@@ -10,7 +10,6 @@ Built for the **Tambo AI — The UI Strikes Back** hackathon.
 - **Generative UI** — AI dynamically renders trip overviews, day itineraries, place cards, and budget breakdowns
 - **Interactive Components** — Modify your trip on the fly with interactable UI elements
 - **Context Awareness** — AI remembers your trip details throughout the conversation
-- **MCP Integration** — External attraction data via Model Context Protocol
 - **Smart Suggestions** — Contextual follow-up prompts to refine your trip
 
 ## Tech Stack
@@ -37,27 +36,22 @@ cd wander-ai
 # Install dependencies
 npm install
 
-# Install MCP server dependencies
-npm run mcp:install
-
 # Set up environment
 cp example.env.local .env.local
 # Add your NEXT_PUBLIC_TAMBO_API_KEY to .env.local
 
-# Run both Next.js and MCP server
-npm run dev:all
+# Run dev server
+npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) and start planning your trip!
 
 ### Scripts
 
-| Command             | Description                     |
-| ------------------- | ------------------------------- |
-| `npm run dev`       | Start Next.js dev server        |
-| `npm run mcp:start` | Start MCP server on port 3001   |
-| `npm run dev:all`   | Start both servers concurrently |
-| `npm run build`     | Production build                |
+| Command        | Description              |
+| -------------- | ------------------------ |
+| `npm run dev`  | Start Next.js dev server |
+| `npm run build`| Production build         |
 
 ## Components
 
@@ -76,24 +70,6 @@ Open [http://localhost:3000](http://localhost:3000) and start planning your trip
 Components wrapped with `withInteractable` can be modified through conversation:
 
 - Adjust budgets, add/remove activities, change dates, etc.
-
-## MCP Server
-
-The MCP server exposes a `searchAttractions` tool that returns curated attraction data:
-
-```javascript
-// Categories: temples, culture, food, nature, shopping, nightlife, all
-searchAttractions({ city: "Tokyo", category: "food" });
-// Returns: { city, category, attractions: [...], source, count }
-```
-
-**Supported Cities**: Tokyo, Kyoto, Paris, Bangkok, Rome
-
-**Endpoints**:
-
-- `GET /health` — Server health check
-- `GET /sse` — MCP Server-Sent Events stream
-- `POST /message` — MCP JSON-RPC endpoint
 
 ## Services
 
@@ -117,12 +93,7 @@ searchAttractions({ city: "Tokyo", category: "food" });
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
 │   ChatPanel │────▶│  Tambo AI   │────▶│  TripPanel  │
 │   (Input)   │     │   (LLM)     │     │  (Output)   │
-└─────────────┘     └──────┬──────┘     └─────────────┘
-                          │
-                    ┌─────▼─────┐
-                    │ MCP Server│
-                    │(Attractions)│
-                    └───────────┘
+└─────────────┘     └─────────────┘     └─────────────┘
 ```
 
 ## License

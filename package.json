@@ -4,14 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "dev:all": "npm run mcp:start & npm run dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "init": "npx tambo init",
-    "mcp:start": "node mcp-server/index.js",
-    "mcp:install": "cd mcp-server && npm install"
+    "init": "npx tambo init"
   },
   "dependencies": {
     "@radix-ui/react-dropdown-menu": "^2.1.16",
