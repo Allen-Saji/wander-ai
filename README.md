@@ -18,7 +18,6 @@ Built for the **Tambo AI — The UI Strikes Back** hackathon.
 - **Framework**: Next.js 15, React 19
 - **AI SDK**: [Tambo AI](https://tambo.co) for generative UI
 - **Styling**: Tailwind CSS with custom WanderAI theme
-- **MCP Server**: Express.js for attraction search tool
 - **Language**: TypeScript
 
 ## Getting Started
