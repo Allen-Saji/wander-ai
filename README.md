@@ -96,6 +96,16 @@ Components wrapped with `withInteractable` can be modified through conversation:
 └─────────────┘     └─────────────┘     └─────────────┘
 ```
 
+## Future Scope
+
+- **MCP Integration** — Connect external data sources via the Model Context Protocol to fetch real-time hotel availability, restaurant listings, flight schedules, and booking details directly within the conversation
+- **Hotel & Accommodation Search** — Browse and compare hotels, hostels, and vacation rentals with pricing, ratings, and availability
+- **Flight Search & Booking** — Find flights between destinations with fare comparisons and direct booking links
+- **Restaurant Discovery** — Surface nearby restaurants with menus, reviews, and reservation options
+- **Activity & Tour Booking** — Search and book guided tours, experiences, and attraction tickets
+- **Multi-city Route Optimization** — Suggest optimal travel routes across multiple destinations based on cost and travel time
+- **Collaborative Trip Planning** — Share trip plans with travel companions and edit together in real time
+
 ## License
 
 MIT
