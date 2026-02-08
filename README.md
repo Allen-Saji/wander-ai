@@ -1,5 +1,7 @@
 # WanderAI
 
+![WanderAI](public/wander-ai.png)
+
 A conversational AI trip planner that generates rich, interactive travel itineraries through natural conversation.
 
 Built for the **Tambo AI — The UI Strikes Back** hackathon.
